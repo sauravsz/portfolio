@@ -3,40 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saurav | Applied Mathematics, SCM & AI Systems Builder</title>
+  <title>Saurav | Applied Mathematics, SCM & AI Systems</title>
   <meta name="description" content="MBA Operations & Marketing • B.Sc. Mathematics (9.05 CGPA) • Building deterministic Operations Research solvers, agentic AI workflows, and SCM replenishment systems." />
   
-  <!-- Fonts -->
+  <!-- JetBrains Mono Font for Code -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS with Bun Design System Tokens -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            serif: ['Newsreader', 'serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-            display: ['Geist', 'sans-serif'],
+            sans: ['system-ui', '-apple-system', '"Segoe UI"', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', '"Open Sans"', '"Helvetica Neue"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', '"Fira Code"', 'Hack', '"Source Code Pro"', '"SF Mono"', 'Inconsolata', 'monospace'],
           },
           colors: {
-            ink: '#08090C',
-            slate: {
-              850: '#131720',
-              900: '#0C0F17',
-              950: '#07090E',
+            // Bun Design System Tokens
+            canvas: '#282a36',
+            primary: '#f472b6',
+            ink: '#9ca3af',
+            muted: '#e5e7eb',
+            hairline: '#ffffff',
+            surface: {
+              1: '#14151a',
+              2: '#3b3f4b',
+              3: '#0d0e11',
+              4: '#4f5666',
             },
-            emerald: {
-              400: '#34D399',
-              500: '#10B981',
-              900: '#064E3B',
-            },
-            accent: '#3B82F6',
+            accent: {
+              red: '#ef4444',
+              'red-light': '#f87171',
+              green: '#22c55e',
+              'green-light': '#4ade80',
+              'pink-light': '#f9a8d4',
+              blue: '#93c5fd',
+              purple: '#ff79c6',
+            }
+          },
+          borderRadius: {
+            sm: '6px',
+            md: '4px',
+            lg: '8px',
+            full: '9999px',
+          },
+          spacing: {
+            xs: '4px',
+            sm: '8px',
+            md: '12px',
+            lg: '16px',
+            xl: '24px',
+            xxl: '32px',
           }
         }
       }
@@ -44,403 +64,415 @@
   </script>
 
   <style>
-    /* Background Noise */
-    .bg-noise {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
-      background-size: 24px 24px;
+    /* Bun Design System Styles */
+    body {
+      background-color: #282a36;
+      color: #9ca3af;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     }
-    
-    /* Double-bezel hardware styling (Machined Doppelrand) */
-    .double-bezel {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 1.75rem;
-      padding: 0.375rem;
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+
+    /* Bun Primary Button (Pink on Dark Pill with 8px rounding & white border) */
+    .bun-btn-primary {
+      background-color: #f472b6;
+      color: #282a36;
+      border: 1px solid #ffffff;
+      border-radius: 8px;
+      height: 44px;
+      padding: 8px 16px;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.15s ease, transform 0.1s ease;
+      cursor: pointer;
     }
-    .double-bezel-inner {
-      background: #0C0F17;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: calc(1.75rem - 0.375rem);
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+    .bun-btn-primary:hover {
+      opacity: 0.92;
+    }
+    .bun-btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    /* Bun Secondary Button */
+    .bun-btn-secondary {
+      background-color: #14151a;
+      color: #e5e7eb;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      height: 44px;
+      padding: 8px 16px;
+      font-weight: 600;
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+    .bun-btn-secondary:hover {
+      background-color: #3b3f4b;
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+
+    /* Bun Card */
+    .bun-card {
+      background-color: #14151a;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 24px;
+      transition: border-color 0.2s ease;
+    }
+    .bun-card:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Bun Code Block */
+    .bun-code {
+      background-color: #3b3f4b;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      font-family: "JetBrains Mono", monospace;
     }
 
     /* Custom scrollbar */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.2); border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(100, 116, 139, 0.4); }
-
-    /* Button in button */
-    .btn-pill {
-      transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-    }
-    .btn-pill:hover .btn-icon-wrapper {
-      transform: translate(2px, -2px) scale(1.05);
-    }
-    .btn-pill:active {
-      transform: scale(0.98);
-    }
+    ::-webkit-scrollbar-track { background: #282a36; }
+    ::-webkit-scrollbar-thumb { background: #3b3f4b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4f5666; }
   </style>
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-slate-950 text-slate-200 antialiased font-sans transition-colors duration-300 min-h-screen relative selection:bg-emerald-500/20 selection:text-emerald-400">
+<body class="min-h-screen selection:bg-[#f472b6] selection:text-[#282a36]">
 
-  <!-- Background Ambient Mesh -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-emerald-500/10 via-blue-500/5 to-transparent blur-3xl opacity-70"></div>
-    <div class="absolute top-[35%] -left-40 w-[600px] h-[600px] bg-blue-500/5 blur-3xl rounded-full"></div>
-    <div class="absolute top-[65%] -right-40 w-[600px] h-[600px] bg-emerald-500/5 blur-3xl rounded-full"></div>
-    <div class="absolute inset-0 bg-noise opacity-40"></div>
-  </div>
-
-  <!-- Floating Navigation Island -->
-  <header class="fixed top-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
-    <nav class="pointer-events-auto flex items-center justify-between gap-6 px-4 py-2 rounded-full backdrop-blur-2xl bg-slate-900/80 border border-white/10 shadow-2xl shadow-black/50 text-sm">
-      <a href="#hero" class="flex items-center gap-2.5 font-display font-semibold tracking-tight text-white pl-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span>Saurav</span>
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-[#282a36]/90 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <!-- Logo / Name -->
+      <a href="#hero" class="flex items-center gap-2 text-white font-bold text-lg tracking-tight">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#f472b6]"></span>
+        <span>saurav.</span>
       </a>
-      
-      <div class="hidden md:flex items-center gap-1 text-slate-400 font-medium text-xs">
-        <a href="#systems" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">Systems</a>
-        <a href="#moats" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">Human Moats</a>
-        <a href="#field-work" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">Field Work</a>
-        <a href="#foundations" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">Background</a>
-      </div>
 
-      <div class="flex items-center gap-2">
-        <a href="https://github.com/sauravsz" target="_blank" rel="noopener" class="text-slate-400 hover:text-white p-1.5 rounded-full hover:bg-white/5 transition-all">
-          <i data-lucide="github" class="w-4 h-4"></i>
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-ink">
+        <a href="#systems" class="hover:text-white transition-colors">Systems</a>
+        <a href="#moats" class="hover:text-white transition-colors">Human Moats</a>
+        <a href="#field-work" class="hover:text-white transition-colors">Field Research</a>
+        <a href="#background" class="hover:text-white transition-colors">Background</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/sauravsz" target="_blank" rel="noopener" class="text-ink hover:text-white p-2 rounded-md transition-colors" title="GitHub">
+          <i data-lucide="github" class="w-5 h-5"></i>
         </a>
-        <a href="https://linkedin.com/in/sauravsz" target="_blank" rel="noopener" class="btn-pill flex items-center gap-2 bg-white text-slate-950 font-medium text-xs pl-3 pr-1.5 py-1.5 rounded-full hover:bg-emerald-400 transition-all shadow-sm">
-          <span>LinkedIn</span>
-          <div class="btn-icon-wrapper w-5 h-5 rounded-full bg-slate-950/10 flex items-center justify-center transition-transform">
-            <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-          </div>
+        <a href="https://linkedin.com/in/sauravsz" target="_blank" rel="noopener" class="bun-btn-primary !h-9 !text-sm !py-1 !px-3">
+          <span>Connect</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
         </a>
       </div>
-    </nav>
+    </div>
   </header>
 
-  <!-- Main Container -->
-  <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pt-36 pb-28">
+  <!-- Main Content Container -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-24">
 
     <!-- HERO SECTION -->
-    <section id="hero" class="pt-8 pb-20 md:pb-28">
+    <section id="hero" class="space-y-6 pt-4">
       
-      <!-- Eyebrow Pill -->
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-medium tracking-wide mb-8">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+      <!-- Eyebrow Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#14151a] border border-white/15 text-[#f472b6] text-xs font-mono font-medium">
+        <span class="w-2 h-2 rounded-full bg-[#22c55e]"></span>
         <span>B.Sc. Mathematics (9.05 CGPA) • MBA Operations & Marketing</span>
       </div>
 
-      <!-- Main Title -->
-      <h1 class="text-4xl sm:text-6xl md:text-7xl font-display font-bold tracking-tight text-white leading-[1.08] mb-8 max-w-4xl">
-        Applied Mathematics, Agentic AI, and <span class="font-serif italic font-normal text-emerald-400">Deterministic</span> Operations.
+      <!-- Main Wordmark & Headline -->
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.05]">
+        Deterministic Operations. <br />
+        <span class="text-[#f472b6]">Agentic AI</span> Systems.
       </h1>
 
-      <!-- Supporting Statement -->
-      <p class="text-lg sm:text-xl text-slate-400 max-w-2xl font-normal leading-relaxed mb-10">
-        I combine mathematical optimization with agentic AI orchestration (Groq, Ollama) to build production supply chain tools, solve asymmetric lead-time replenishment, and eliminate operational bottlenecks in days instead of quarters.
+      <!-- Supporting Body Text -->
+      <p class="text-lg sm:text-xl text-muted max-w-3xl leading-relaxed">
+        I combine mathematical optimization with agentic AI orchestration (Groq, Ollama) to build production supply chain tools, solve asymmetric lead-time replenishment, and eliminate physical bottlenecks in days instead of quarters.
       </p>
 
-      <!-- Action Row -->
-      <div class="flex flex-wrap items-center gap-4 text-sm">
-        <a href="#systems" class="btn-pill inline-flex items-center gap-3 bg-emerald-500 text-slate-950 font-semibold px-6 py-3 rounded-full hover:bg-emerald-400 transition-all shadow-lg shadow-emerald-500/20">
-          <span>Explore The Systems</span>
-          <div class="btn-icon-wrapper w-6 h-6 rounded-full bg-slate-950/15 flex items-center justify-center transition-transform">
-            <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
-          </div>
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center gap-4 pt-4">
+        <a href="#systems" class="bun-btn-primary">
+          <span>Explore Systems</span>
+          <i data-lucide="arrow-down" class="w-4 h-4"></i>
         </a>
-
-        <a href="https://github.com/sauravsz" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 text-slate-300 px-5 py-3 rounded-full border border-white/10 transition-all">
+        <a href="https://github.com/sauravsz" target="_blank" rel="noopener" class="bun-btn-secondary">
           <i data-lucide="github" class="w-4 h-4"></i>
           <span>github.com/sauravsz</span>
         </a>
       </div>
 
-      <!-- Live Proof Metric Strip -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16 pt-10 border-t border-white/5 text-slate-400 font-mono text-xs">
-        <div>
-          <div class="text-xl font-bold text-white font-sans tracking-tight">9.05 CGPA</div>
-          <div class="text-slate-500 mt-1">B.Sc. Mathematics Degree</div>
+      <!-- Quantitative Fact Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-10 border-t border-white/10 font-mono text-xs">
+        <div class="bg-[#14151a] p-4 rounded-lg border border-white/10">
+          <div class="text-2xl font-bold text-white font-sans">9.05 CGPA</div>
+          <div class="text-ink mt-1">B.Sc. Mathematics</div>
         </div>
-        <div>
-          <div class="text-xl font-bold text-white font-sans tracking-tight">33 Days</div>
-          <div class="text-slate-500 mt-1">Amul FMCG Field Research</div>
+        <div class="bg-[#14151a] p-4 rounded-lg border border-white/10">
+          <div class="text-2xl font-bold text-white font-sans">33 Days</div>
+          <div class="text-ink mt-1">Amul FMCG Field Research</div>
         </div>
-        <div>
-          <div class="text-xl font-bold text-white font-sans tracking-tight">&lt; 300ms</div>
-          <div class="text-slate-500 mt-1">Groq Voice Intent Latency</div>
+        <div class="bg-[#14151a] p-4 rounded-lg border border-white/10">
+          <div class="text-2xl font-bold text-white font-sans">&lt; 300ms</div>
+          <div class="text-ink mt-1">Groq Voice Intent Latency</div>
         </div>
-        <div>
-          <div class="text-xl font-bold text-white font-sans tracking-tight">160+</div>
-          <div class="text-slate-500 mt-1">AI Providers Routed (SZRoute)</div>
+        <div class="bg-[#14151a] p-4 rounded-lg border border-white/10">
+          <div class="text-2xl font-bold text-white font-sans">160+</div>
+          <div class="text-ink mt-1">AI Providers Routed (SZRoute)</div>
         </div>
       </div>
     </section>
 
-    <!-- INTERACTIVE SYSTEMS BENTO (THE SHOWCASE) -->
-    <section id="systems" class="py-16 md:py-24">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+    <!-- SYSTEMS SHOWCASE SECTION -->
+    <section id="systems" class="space-y-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-4">
         <div>
-          <div class="text-emerald-400 font-mono text-xs tracking-wider uppercase font-semibold mb-2">Portfolio of Systems</div>
-          <h2 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
-            Production Tools & Systems
+          <div class="text-[#f472b6] font-mono text-xs uppercase tracking-wider font-semibold">Production Systems</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
+            Built Tools & Architecture
           </h2>
         </div>
-        <p class="text-slate-400 text-sm max-w-md">
-          Applied software built to solve asymmetric replenishment variance, transportation network flow, and edge model routing.
+        <p class="text-ink text-sm max-w-md font-mono">
+          Functional applications solving asymmetric inventory replenishment, logistics routing, and edge model routing.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
 
         <!-- SYSTEM 1: TRACKMED (col-span-12 md:col-span-8) -->
-        <div class="md:col-span-8 double-bezel group">
-          <div class="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-mono font-medium">
-                  <span>Inventory Replenishment Engine</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                  <span class="text-xs font-mono text-slate-400">PWA Live</span>
-                </div>
+        <div class="md:col-span-8 bun-card flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded-md bg-[#3b3f4b] text-[#f472b6] text-xs font-mono font-medium border border-white/10">
+                SCM Replenishment Engine
+              </span>
+              <span class="text-xs font-mono text-[#22c55e] flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#22c55e]"></span>
+                Private Production Tool
+              </span>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white tracking-tight">TrackMed</h3>
+            <p class="text-ink text-sm leading-relaxed">
+              Multi-channel medicine inventory platform solving stockouts caused by asymmetric supplier lead times (Local retail 0–1d vs. Regional 3–5d vs. Bulk online 7–10d). Features sub-second natural language voice/text intent parsing via Groq API and automated WhatsApp supplier order dispatch.
+            </p>
+
+            <!-- Interactive Depletion & Cutoff Simulator -->
+            <div class="bun-code p-4 space-y-3">
+              <div class="flex justify-between items-center text-xs font-mono text-muted">
+                <span>Simulate Daily Consumption:</span>
+                <span id="depletion-val" class="text-[#f472b6] font-bold">2 units / day</span>
               </div>
-
-              <h3 class="text-2xl sm:text-3xl font-display font-bold text-white tracking-tight mb-3">
-                TrackMed
-              </h3>
-              <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                Multi-channel medicine replenishment platform solving stockouts caused by asymmetric supplier lead times (Local retail 0–1d vs. Regional 3–5d vs. Bulk online 7–10d). Integrates Groq API for sub-second natural language voice/text intent parsing and 1-click WhatsApp supplier order dispatch.
-              </p>
-
-              <!-- Interactive Simulator: Lead-Time Cutoff Slider -->
-              <div class="bg-slate-950/80 rounded-xl p-4 border border-white/5 mb-6">
-                <div class="flex justify-between items-center text-xs font-mono text-slate-400 mb-2">
-                  <span>Simulate Daily Consumption:</span>
-                  <span id="depletion-val" class="text-emerald-400 font-semibold">2 units / day</span>
+              <input type="range" id="depletion-slider" min="1" max="5" value="2" class="w-full h-1 bg-[#14151a] rounded-lg appearance-none cursor-pointer accent-[#f472b6]" />
+              
+              <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
+                <div class="bg-[#14151a] p-2.5 rounded border border-white/10">
+                  <div class="text-ink text-[11px]">Local Store (0-1d)</div>
+                  <div id="local-cutoff" class="text-white font-medium mt-1">Reorder in 8 days</div>
                 </div>
-                <input type="range" id="depletion-slider" min="1" max="5" value="2" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-400 mb-4" />
-                
-                <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/5">
-                  <div class="bg-slate-900 p-2 rounded border border-white/5">
-                    <div class="text-slate-500 text-[10px]">Local Retail (0-1d)</div>
-                    <div id="local-cutoff" class="text-white font-medium mt-0.5">Reorder in 8 days</div>
-                  </div>
-                  <div class="bg-slate-900 p-2 rounded border border-white/5">
-                    <div class="text-slate-500 text-[10px]">Regional Dist (3-5d)</div>
-                    <div id="reg-cutoff" class="text-amber-400 font-medium mt-0.5">Reorder in 5 days</div>
-                  </div>
-                  <div class="bg-slate-900 p-2 rounded border border-white/5">
-                    <div class="text-slate-500 text-[10px]">Bulk Online (7-10d)</div>
-                    <div id="bulk-cutoff" class="text-rose-400 font-medium mt-0.5">Reorder NOW</div>
-                  </div>
+                <div class="bg-[#14151a] p-2.5 rounded border border-white/10">
+                  <div class="text-ink text-[11px]">Regional Dist (3-5d)</div>
+                  <div id="reg-cutoff" class="text-[#f9a8d4] font-medium mt-1">Reorder in 5 days</div>
+                </div>
+                <div class="bg-[#14151a] p-2.5 rounded border border-white/10">
+                  <div class="text-ink text-[11px]">Bulk Online (7-10d)</div>
+                  <div id="bulk-cutoff" class="text-[#ef4444] font-medium mt-1">Reorder NOW</div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <!-- Tech Stack & Links -->
-            <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/5">
-              <div class="flex flex-wrap gap-2 text-[11px] font-mono text-slate-400">
-                <span class="px-2 py-1 bg-slate-900 rounded border border-white/5">Next.js 15</span>
-                <span class="px-2 py-1 bg-slate-900 rounded border border-white/5">Groq LPU API</span>
-                <span class="px-2 py-1 bg-slate-900 rounded border border-white/5">Supabase</span>
-                <span class="px-2 py-1 bg-slate-900 rounded border border-white/5">Tailwind PWA</span>
-              </div>
-              <a href="https://trackmed-app.vercel.app" target="_blank" rel="noopener" class="btn-pill inline-flex items-center gap-2 text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-full transition-all">
-                <span>View Live PWA</span>
-                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-              </a>
+          <!-- Tech Tags (No URL link for TrackMed) -->
+          <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10 text-xs font-mono">
+            <div class="flex flex-wrap gap-2 text-ink">
+              <span class="px-2 py-1 bg-[#3b3f4b] rounded">Next.js 15</span>
+              <span class="px-2 py-1 bg-[#3b3f4b] rounded">Groq LPU API</span>
+              <span class="px-2 py-1 bg-[#3b3f4b] rounded">Supabase</span>
+              <span class="px-2 py-1 bg-[#3b3f4b] rounded">Tailwind PWA</span>
             </div>
+            <span class="text-ink text-[11px]">Private Medical Data Shielded</span>
           </div>
         </div>
 
         <!-- SYSTEM 2: TORSZ (col-span-12 md:col-span-4) -->
-        <div class="md:col-span-4 double-bezel group">
-          <div class="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
-            <div>
-              <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-mono font-medium mb-4">
-                <span>Operations Research Suite</span>
+        <div class="md:col-span-4 bun-card flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <span class="px-2.5 py-1 rounded-md bg-[#3b3f4b] text-[#93c5fd] text-xs font-mono font-medium border border-white/10">
+              Operations Research Suite
+            </span>
+
+            <h3 class="text-2xl font-bold text-white tracking-tight">torsz</h3>
+            <p class="text-ink text-sm leading-relaxed">
+              Interactive web solver for multi-origin to multi-destination logistics networks. Implements automated dummy origin/destination balancing, Hungarian assignment modeling, and Critical Path Method (CPM) project Gantt charts with OCR problem parsing.
+            </p>
+
+            <div class="bun-code p-3 text-xs font-mono text-muted space-y-1.5">
+              <div class="text-[11px] text-ink font-semibold uppercase">Capabilities</div>
+              <div class="flex items-center gap-2 text-[#22c55e]">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                <span>Auto-dummy node balancing</span>
               </div>
-
-              <h3 class="text-2xl font-display font-bold text-white tracking-tight mb-3">
-                torsz
-              </h3>
-              <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                Interactive web solver for multi-origin to multi-destination logistics networks. Implements automated dummy origin/destination balancing, Hungarian assignment modeling, and Critical Path Method (CPM) project Gantt charts with OCR problem parsing.
-              </p>
-
-              <div class="bg-slate-950/80 rounded-xl p-3 border border-white/5 font-mono text-xs text-slate-300 space-y-1.5 mb-6">
-                <div class="text-[11px] text-slate-500 font-semibold uppercase">Core Capabilities</div>
-                <div class="flex items-center gap-2 text-emerald-400">
-                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                  <span>Auto-dummy node balancing</span>
-                </div>
-                <div class="flex items-center gap-2 text-emerald-400">
-                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                  <span>Degeneracy resolution & duals</span>
-                </div>
-                <div class="flex items-center gap-2 text-emerald-400">
-                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                  <span>Critical Path Method (CPM)</span>
-                </div>
+              <div class="flex items-center gap-2 text-[#22c55e]">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                <span>Degeneracy resolution & duals</span>
+              </div>
+              <div class="flex items-center gap-2 text-[#22c55e]">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                <span>Critical Path Method (CPM)</span>
               </div>
             </div>
+          </div>
 
-            <div class="flex items-center justify-between pt-4 border-t border-white/5">
-              <span class="text-[11px] font-mono text-slate-500">React • TypeScript • Vite</span>
-              <a href="https://github.com/sauravsz/torsz" target="_blank" rel="noopener" class="btn-pill inline-flex items-center gap-2 text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-full transition-all">
-                <span>GitHub Repo</span>
-                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-              </a>
-            </div>
+          <div class="flex items-center justify-between pt-4 border-t border-white/10">
+            <span class="text-xs font-mono text-ink">React • TypeScript</span>
+            <a href="https://github.com/sauravsz/torsz" target="_blank" rel="noopener" class="bun-btn-secondary !h-8 !text-xs !py-1 !px-2.5">
+              <span>GitHub</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
           </div>
         </div>
 
         <!-- SYSTEM 3: SZROUTE (col-span-12 md:col-span-6) -->
-        <div class="md:col-span-6 double-bezel group">
-          <div class="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
-            <div>
-              <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-mono font-medium mb-4">
-                <span>Edge AI Infrastructure</span>
+        <div class="md:col-span-6 bun-card flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <span class="px-2.5 py-1 rounded-md bg-[#3b3f4b] text-[#ff79c6] text-xs font-mono font-medium border border-white/10">
+              Edge AI Infrastructure
+            </span>
+
+            <h3 class="text-2xl font-bold text-white tracking-tight">SZRoute</h3>
+            <p class="text-ink text-sm leading-relaxed">
+              High-throughput edge AI model router supporting 160+ AI providers with automatic failover circuits, 15%–95% RTK prompt token compression, and custom Liquid Glass UI.
+            </p>
+
+            <div class="bun-code p-4 space-y-2">
+              <div class="flex justify-between items-center text-xs font-mono text-muted">
+                <span>RTK Prompt Token Compression:</span>
+                <span class="text-[#ff79c6] font-bold">68% Savings</span>
               </div>
-
-              <h3 class="text-2xl font-display font-bold text-white tracking-tight mb-3">
-                SZRoute
-              </h3>
-              <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                High-throughput edge AI model router supporting 160+ AI providers with automatic failover circuits, 15%–95% RTK prompt token compression, and custom Liquid Glass UI.
-              </p>
-
-              <div class="bg-slate-950/80 rounded-xl p-4 border border-white/5 mb-6">
-                <div class="flex justify-between items-center text-xs font-mono text-slate-400 mb-1">
-                  <span>RTK Prompt Token Compression:</span>
-                  <span class="text-purple-400 font-semibold">68% Savings</span>
-                </div>
-                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden mt-2">
-                  <div class="bg-purple-500 h-full rounded-full" style="width: 68%"></div>
-                </div>
-                <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-2">
-                  <span>Input: 4,200 tokens</span>
-                  <span>Compressed: 1,344 tokens</span>
-                </div>
+              <div class="w-full bg-[#14151a] h-2 rounded-full overflow-hidden">
+                <div class="bg-[#ff79c6] h-full rounded-full" style="width: 68%"></div>
+              </div>
+              <div class="flex justify-between text-[11px] font-mono text-ink">
+                <span>Input: 4,200 tokens</span>
+                <span>Compressed: 1,344 tokens</span>
               </div>
             </div>
+          </div>
 
-            <div class="flex items-center justify-between pt-4 border-t border-white/5">
-              <span class="text-[11px] font-mono text-slate-500">Next.js Edge • Vercel Serverless</span>
-              <a href="https://szroute.vercel.app" target="_blank" rel="noopener" class="btn-pill inline-flex items-center gap-2 text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-full transition-all">
-                <span>View Gateway</span>
-                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-              </a>
-            </div>
+          <div class="flex items-center justify-between pt-4 border-t border-white/10">
+            <span class="text-xs font-mono text-ink">Next.js Edge • Serverless</span>
+            <a href="https://szroute.vercel.app" target="_blank" rel="noopener" class="bun-btn-secondary !h-8 !text-xs !py-1 !px-2.5">
+              <span>View Gateway</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
           </div>
         </div>
 
         <!-- SYSTEM 4: JOBOPS (col-span-12 md:col-span-6) -->
-        <div class="md:col-span-6 double-bezel group">
-          <div class="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
-            <div>
-              <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-mono font-medium mb-4">
-                <span>Agentic Automation Pipeline</span>
+        <div class="md:col-span-6 bun-card flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <span class="px-2.5 py-1 rounded-md bg-[#3b3f4b] text-[#f9a8d4] text-xs font-mono font-medium border border-white/10">
+              Agentic Automation Pipeline
+            </span>
+
+            <h3 class="text-2xl font-bold text-white tracking-tight">JobOps</h3>
+            <p class="text-ink text-sm leading-relaxed">
+              Agentic career evaluation pipeline featuring multi-criterion role scoring (1.0–5.0 scale), single-page pdfLaTeX / LibreOffice resume tailoring, and Things 3 project synchronization.
+            </p>
+
+            <div class="bun-code p-3 text-xs font-mono text-muted space-y-1.5">
+              <div class="flex justify-between">
+                <span class="text-ink">Document Output:</span>
+                <span class="text-[#f9a8d4] font-semibold">Single-Page pdfLaTeX</span>
               </div>
-
-              <h3 class="text-2xl font-display font-bold text-white tracking-tight mb-3">
-                JobOps
-              </h3>
-              <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                Agentic career evaluation pipeline featuring multi-criterion role scoring (1.0–5.0 scale), single-page pdfLaTeX / LibreOffice resume tailoring, and Things 3 project synchronization.
-              </p>
-
-              <div class="bg-slate-950/80 rounded-xl p-3 border border-white/5 font-mono text-xs text-slate-300 space-y-1.5 mb-6">
-                <div class="flex justify-between">
-                  <span class="text-slate-500">Document Output:</span>
-                  <span class="text-amber-400 font-semibold">Single-Page pdfLaTeX</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-slate-500">Scoring Engine:</span>
-                  <span class="text-white">A–H Multi-Vector Rubric</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-slate-500">Task Bridge:</span>
-                  <span class="text-emerald-400">Things 3 CLI Integration</span>
-                </div>
+              <div class="flex justify-between">
+                <span class="text-ink">Scoring Engine:</span>
+                <span class="text-white">A–H Multi-Vector Rubric</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-ink">Task Bridge:</span>
+                <span class="text-[#22c55e]">Things 3 CLI Integration</span>
               </div>
             </div>
+          </div>
 
-            <div class="flex items-center justify-between pt-4 border-t border-white/5">
-              <span class="text-[11px] font-mono text-slate-500">Python • pdfLaTeX • LibreOffice</span>
-              <a href="https://github.com/sauravsz" target="_blank" rel="noopener" class="btn-pill inline-flex items-center gap-2 text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-full transition-all">
-                <span>GitHub Repo</span>
-                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-              </a>
-            </div>
+          <div class="flex items-center justify-between pt-4 border-t border-white/10">
+            <span class="text-xs font-mono text-ink">Python • pdfLaTeX</span>
+            <a href="https://github.com/sauravsz/JobOps" target="_blank" rel="noopener" class="bun-btn-secondary !h-8 !text-xs !py-1 !px-2.5">
+              <span>GitHub</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- THE PHILOSOPHY & 3 HUMAN MOATS (FROM OBSIDIAN) -->
-    <section id="moats" class="py-16 md:py-24 border-t border-white/5">
-      <div class="max-w-3xl mb-12">
-        <div class="text-emerald-400 font-mono text-xs tracking-wider uppercase font-semibold mb-2">Original Thinking</div>
-        <h2 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight mb-4">
+    <!-- HUMAN MOATS & PHILOSOPHY (FROM OBSIDIAN) -->
+    <section id="moats" class="space-y-8">
+      <div class="border-b border-white/10 pb-4">
+        <div class="text-[#f472b6] font-mono text-xs uppercase tracking-wider font-semibold">Original Thinking</div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
           Escaping the AI Average: The 3 Human Moats
         </h2>
-        <p class="text-slate-400 text-base leading-relaxed">
+        <p class="text-ink text-sm max-w-2xl mt-2 leading-relaxed">
           Because LLMs calculate the mathematical average of documents, relying on generic AI prompts homogenizes thinking. To build high-value operational tools, I focus on the three moats AI cannot replicate:
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="p-6 rounded-2xl bg-slate-900/60 border border-white/5 flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-mono font-bold mb-5">
+        <div class="bun-card flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="w-8 h-8 rounded-md bg-[#3b3f4b] text-[#f472b6] font-mono font-bold flex items-center justify-center text-sm border border-white/10">
               01
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">Move Upstream in Data</h3>
-            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+            <h3 class="text-lg font-bold text-white">Move Upstream in Data</h3>
+            <p class="text-ink text-xs sm:text-sm leading-relaxed">
               AI commoditizes downstream summarization. True operational alpha lives upstream: capturing firsthand friction in retail beats, talking to distributors, and observing unasked questions in physical networks.
             </p>
           </div>
-          <div class="text-[11px] font-mono text-emerald-400/80 pt-3 border-t border-white/5">
+          <div class="text-xs font-mono text-[#f472b6] pt-3 border-t border-white/10">
             First-person tacit observation
           </div>
         </div>
 
-        <div class="p-6 rounded-2xl bg-slate-900/60 border border-white/5 flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center font-mono font-bold mb-5">
+        <div class="bun-card flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="w-8 h-8 rounded-md bg-[#3b3f4b] text-[#93c5fd] font-mono font-bold flex items-center justify-center text-sm border border-white/10">
               02
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">Hunt Down Granular Details</h3>
-            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+            <h3 class="text-lg font-bold text-white">Hunt Down Granular Details</h3>
+            <p class="text-ink text-xs sm:text-sm leading-relaxed">
               Summarization is fundamentally the deletion of details. But supply chains succeed or fail on granular edge cases: asymmetric lead-time cutoffs, bottle-cap stockout penalties, and PTR retail margins.
             </p>
           </div>
-          <div class="text-[11px] font-mono text-blue-400/80 pt-3 border-t border-white/5">
+          <div class="text-xs font-mono text-[#93c5fd] pt-3 border-t border-white/10">
             Preserving constraint nuances
           </div>
         </div>
 
-        <div class="p-6 rounded-2xl bg-slate-900/60 border border-white/5 flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center font-mono font-bold mb-5">
+        <div class="bun-card flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="w-8 h-8 rounded-md bg-[#3b3f4b] text-[#22c55e] font-mono font-bold flex items-center justify-center text-sm border border-white/10">
               03
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">Deterministic Solvers</h3>
-            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+            <h3 class="text-lg font-bold text-white">Deterministic Solvers</h3>
+            <p class="text-ink text-xs sm:text-sm leading-relaxed">
               Never let an LLM do supply chain math. Use fast LLMs (Groq) to translate unstructured human text and voice into structured parameters, then pass those matrices to deterministic Linear Programming solvers.
             </p>
           </div>
-          <div class="text-[11px] font-mono text-purple-400/80 pt-3 border-t border-white/5">
+          <div class="text-xs font-mono text-[#22c55e] pt-3 border-t border-white/10">
             Mathematical zero-hallucination
           </div>
         </div>
@@ -448,142 +480,109 @@
     </section>
 
     <!-- FIELD RESEARCH (AMUL FMCG STUDY) -->
-    <section id="field-work" class="py-16 md:py-24 border-t border-white/5">
-      <div class="double-bezel">
-        <div class="double-bezel-inner p-8 sm:p-12">
-          <div class="max-w-3xl">
-            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-mono font-medium mb-4">
-              <span>Ground-Level Operations Experience</span>
-            </div>
+    <section id="field-work" class="bun-card space-y-6">
+      <div class="space-y-2">
+        <span class="px-2.5 py-1 rounded-md bg-[#3b3f4b] text-[#f9a8d4] text-xs font-mono font-medium border border-white/10">
+          Field Operations Case Study
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          33 Days in the Field with Amul (GCMMF)
+        </h2>
+        <p class="text-ink text-sm max-w-3xl leading-relaxed">
+          Conducted ground distribution and trade marketing research across 4 commercial beats in Silchar, analyzing why textbook supply chain models break down at the retail counter.
+        </p>
+      </div>
 
-            <h2 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight mb-4">
-              33 Days in the Field with Amul (GCMMF)
-            </h2>
-            
-            <p class="text-slate-400 text-base leading-relaxed mb-8">
-              Conducted intensive distribution and trade marketing research across 4 commercial beats in Silchar, analyzing why textbook supply chain models break down at the retail counter.
-            </p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-              <div class="bg-slate-950/80 p-4 rounded-xl border border-white/5">
-                <div class="text-2xl font-bold font-sans text-white">140+</div>
-                <div class="text-xs text-slate-500 font-mono mt-1">Retail Stores Surveyed</div>
-              </div>
-              <div class="bg-slate-950/80 p-4 rounded-xl border border-white/5">
-                <div class="text-2xl font-bold font-sans text-white">4 Beats</div>
-                <div class="text-xs text-slate-500 font-mono mt-1">Commercial Sales Routes</div>
-              </div>
-              <div class="bg-slate-950/80 p-4 rounded-xl border border-white/5">
-                <div class="text-2xl font-bold font-sans text-white">PTR & Schemes</div>
-                <div class="text-xs text-slate-500 font-mono mt-1">Margin Analysis & Bottlenecks</div>
-              </div>
-            </div>
-
-            <div class="text-sm text-slate-300 font-sans leading-relaxed border-l-2 border-amber-400/60 pl-4 space-y-2">
-              <p>
-                <strong>Key Finding:</strong> Retail stockouts are rarely caused by aggregate demand forecast inaccuracies. They are driven by retail margin pushback on Price-to-Retailer (PTR) structures and erratic distributor delivery intervals that cause store owners to delay purchase commitments.
-              </p>
-            </div>
-          </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono">
+        <div class="bg-[#282a36] p-4 rounded-lg border border-white/10">
+          <div class="text-2xl font-bold text-white font-sans">140+</div>
+          <div class="text-xs text-ink mt-1">Retail Stores Surveyed</div>
         </div>
+        <div class="bg-[#282a36] p-4 rounded-lg border border-white/10">
+          <div class="text-2xl font-bold text-white font-sans">4 Beats</div>
+          <div class="text-xs text-ink mt-1">Commercial Sales Routes</div>
+        </div>
+        <div class="bg-[#282a36] p-4 rounded-lg border border-white/10">
+          <div class="text-2xl font-bold text-white font-sans">PTR & Schemes</div>
+          <div class="text-xs text-ink mt-1">Margin Analysis & Bottlenecks</div>
+        </div>
+      </div>
+
+      <div class="bun-code p-4 text-xs font-mono text-muted space-y-2 border-l-4 border-l-[#f472b6]">
+        <p>
+          <strong class="text-white">Core Realization:</strong> Retail stockouts are rarely caused by aggregate demand forecast inaccuracies. They are driven by retail margin dissatisfaction on Price-to-Retailer (PTR) structures and erratic distributor delivery intervals that cause store owners to delay purchase commitments.
+        </p>
       </div>
     </section>
 
     <!-- BACKGROUND & EDUCATION -->
-    <section id="foundations" class="py-16 md:py-24 border-t border-white/5">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-        <div class="md:col-span-5">
-          <div class="text-emerald-400 font-mono text-xs tracking-wider uppercase font-semibold mb-2">Education & Profile</div>
-          <h2 class="text-3xl font-display font-bold text-white tracking-tight mb-4">
-            Quantitative Foundations
-          </h2>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">
-            A combination of abstract mathematical problem solving and real-world commercial operations.
+    <section id="background" class="space-y-8">
+      <div class="border-b border-white/10 pb-4">
+        <div class="text-[#f472b6] font-mono text-xs uppercase tracking-wider font-semibold">Academic Foundation</div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
+          Education & Background
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bun-card space-y-3">
+          <div class="flex justify-between items-start">
+            <h3 class="text-lg font-bold text-white">Assam (Central) University</h3>
+            <span class="text-xs font-mono text-[#f472b6]">2025 – 2027</span>
+          </div>
+          <div class="text-sm font-semibold text-muted">Master of Business Administration (MBA)</div>
+          <div class="text-xs font-mono text-ink">Specialization: Operations & Marketing</div>
+          <p class="text-xs text-ink leading-relaxed pt-2">
+            Coursework: Logistics & Supply Chain Management (OM 02), Operations Research & Modeling (OM 604), Total Quality Management (OM 01), Strategic Marketing, and Consumer Behavior.
           </p>
-
-          <div class="space-y-4 text-xs font-mono text-slate-400">
-            <div class="flex items-center gap-2.5">
-              <i data-lucide="map-pin" class="w-4 h-4 text-slate-500"></i>
-              <span>Silchar, Assam, India</span>
-            </div>
-            <div class="flex items-center gap-2.5">
-              <i data-lucide="code" class="w-4 h-4 text-slate-500"></i>
-              <span>Python • TypeScript • Next.js • React • Linear Programming</span>
-            </div>
-            <div class="flex items-center gap-2.5">
-              <i data-lucide="cpu" class="w-4 h-4 text-slate-500"></i>
-              <span>Groq API • Ollama • Vercel Edge • Supabase</span>
-            </div>
-          </div>
         </div>
 
-        <div class="md:col-span-7 space-y-6">
-          <div class="p-6 rounded-2xl bg-slate-900/60 border border-white/5">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="text-base font-bold text-white">Assam (Central) University</h3>
-              <span class="text-xs font-mono text-emerald-400">2025 – 2027</span>
-            </div>
-            <div class="text-sm font-medium text-slate-300 mb-2">Master of Business Administration (MBA)</div>
-            <div class="text-xs text-slate-500 mb-3">Specialization in Operations & Marketing</div>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Coursework: Logistics & Supply Chain Management (OM 02), Operations Research & Modeling (OM 604), Total Quality Management (OM 01), Strategic Marketing, and Consumer Behavior.
-            </p>
+        <div class="bun-card space-y-3">
+          <div class="flex justify-between items-start">
+            <h3 class="text-lg font-bold text-white">Gurucharan College, Silchar</h3>
+            <span class="text-xs font-mono text-[#22c55e]">9.05 CGPA</span>
           </div>
-
-          <div class="p-6 rounded-2xl bg-slate-900/60 border border-white/5">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="text-base font-bold text-white">Gurucharan College, Silchar</h3>
-              <span class="text-xs font-mono text-slate-400">9.05 CGPA</span>
-            </div>
-            <div class="text-sm font-medium text-slate-300 mb-2">Bachelor of Science (B.Sc.) in Mathematics</div>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Core foundation in linear algebra, differential equations, optimization theory, probability distributions, and mathematical proofs.
-            </p>
-          </div>
+          <div class="text-sm font-semibold text-muted">Bachelor of Science (B.Sc.) in Mathematics</div>
+          <div class="text-xs font-mono text-ink">Focus: Applied & Discrete Mathematics</div>
+          <p class="text-xs text-ink leading-relaxed pt-2">
+            Core foundation in linear algebra, differential equations, optimization theory, probability distributions, and mathematical problem-solving.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- CALL TO ACTION / FOOTER -->
-    <section class="pt-16 pb-8 border-t border-white/5">
-      <div class="double-bezel">
-        <div class="double-bezel-inner p-8 sm:p-12 text-center">
-          <div class="max-w-xl mx-auto">
-            <h2 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight mb-4">
-              Let's Build Something Deterministic.
-            </h2>
-            <p class="text-slate-400 text-sm mb-8 leading-relaxed">
-              Open to discussions on AI-native supply chains, rapid operational tool prototyping, operations research models, and technical collaborations.
-            </p>
-
-            <div class="flex flex-wrap justify-center items-center gap-4">
-              <a href="https://linkedin.com/in/sauravsz" target="_blank" rel="noopener" class="btn-pill inline-flex items-center gap-3 bg-white text-slate-950 font-semibold px-6 py-3 rounded-full hover:bg-emerald-400 transition-all shadow-lg">
-                <span>Connect on LinkedIn</span>
-                <div class="btn-icon-wrapper w-6 h-6 rounded-full bg-slate-950/15 flex items-center justify-center transition-transform">
-                  <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-                </div>
-              </a>
-
-              <a href="https://github.com/sauravsz" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-slate-300 px-5 py-3 rounded-full border border-white/10 text-sm transition-all">
-                <i data-lucide="github" class="w-4 h-4"></i>
-                <span>GitHub Profile</span>
-              </a>
-            </div>
-          </div>
+    <!-- FOOTER / CALL TO ACTION -->
+    <footer class="pt-12 border-t border-white/10 space-y-8">
+      <div class="bun-card text-center py-12 space-y-6">
+        <h2 class="text-3xl font-extrabold text-white tracking-tight">
+          Let's Build Something Deterministic.
+        </h2>
+        <p class="text-ink text-sm max-w-md mx-auto leading-relaxed">
+          Open to discussions on AI-native supply chains, rapid operational tool prototyping, operations research models, and technical collaborations.
+        </p>
+        <div class="flex flex-wrap justify-center items-center gap-4">
+          <a href="https://linkedin.com/in/sauravsz" target="_blank" rel="noopener" class="bun-btn-primary">
+            <span>Connect on LinkedIn</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+          <a href="https://github.com/sauravsz" target="_blank" rel="noopener" class="bun-btn-secondary">
+            <i data-lucide="github" class="w-4 h-4"></i>
+            <span>GitHub Profile</span>
+          </a>
         </div>
       </div>
 
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-12 text-xs font-mono text-slate-500">
-        <div>&copy; 2026 Saurav. Engineered with high-end structuralism & zero slop.</div>
-        <div class="flex items-center gap-4">
-          <a href="#hero" class="hover:text-slate-300 transition-colors">Back to Top ↑</a>
+      <div class="flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-ink pt-4">
+        <div>&copy; 2026 Saurav. Built with Bun Design System standards.</div>
+        <div class="flex items-center gap-4 mt-2 sm:mt-0">
+          <a href="#hero" class="hover:text-white transition-colors">Back to top ↑</a>
         </div>
       </div>
-    </section>
+    </footer>
 
   </main>
 
-  <!-- Interactive JavaScript for Depletion Simulator -->
+  <!-- Interactive Simulator JavaScript -->
   <script>
     // Initialize Lucide Icons
     lucide.createIcons();
