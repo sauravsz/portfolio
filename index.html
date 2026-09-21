@@ -67,6 +67,11 @@
       --stroke-color: #d9d9d9;
     }
 
+    html {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
     body {
       background-color: #ffffff;
       color: #444444;
@@ -75,6 +80,14 @@
       line-height: 30px;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+        line-height: 26px;
+      }
     }
 
     /* Bear Scaled Display Headings */
@@ -124,7 +137,7 @@
       border-radius: 9999px;
     }
 
-    /* Bear 40px Card Frame */
+    /* Bear 40px Card Frame (Responsive Padding & Radii) */
     .bear-frame {
       background-color: #ffffff;
       border: 1px solid #d9d9d9;
@@ -133,11 +146,16 @@
       box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
+    @media (max-width: 640px) {
+      .bear-frame {
+        border-radius: 28px;
+        padding: 22px 18px;
+      }
+    }
     .bear-frame:hover {
       box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.08);
       border-color: #c5c5c5;
     }
-
     /* Bear Button Primary (Charcoal fill, white text, 40px radius) */
     .bear-btn-primary {
       background-color: #444444;
@@ -213,38 +231,49 @@
       border-radius: 40px;
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
     }
+    @media (max-width: 640px) {
+      .liquid-glass-lens {
+        border-radius: 28px;
+      }
+    }
 
-    /* Organic Freeform Blobs (Bear Multi-Theme Decor) */
+    /* Organic Freeform Blobs (Contained & Non-Overflowing) */
     .blob-shape-1 {
       position: absolute;
-      width: 580px;
+      max-width: 100vw;
+      width: min(580px, 90vw);
       height: 480px;
       background: linear-gradient(135deg, rgba(142, 194, 194, 0.45) 0%, rgba(183, 213, 213, 0.25) 100%);
       border-radius: 60% 40% 70% 30% / 45% 65% 35% 55%;
       filter: blur(48px);
       z-index: 0;
+      pointer-events: none;
       animation: floatBlob1 18s ease-in-out infinite alternate;
     }
 
     .blob-shape-2 {
       position: absolute;
-      width: 520px;
+      max-width: 100vw;
+      width: min(520px, 85vw);
       height: 500px;
       background: linear-gradient(135deg, rgba(136, 74, 168, 0.25) 0%, rgba(142, 194, 194, 0.2) 100%);
       border-radius: 40% 60% 35% 65% / 60% 35% 65% 40%;
       filter: blur(52px);
       z-index: 0;
+      pointer-events: none;
       animation: floatBlob2 22s ease-in-out infinite alternate;
     }
 
     .blob-shape-3 {
       position: absolute;
-      width: 440px;
+      max-width: 100vw;
+      width: min(440px, 80vw);
       height: 420px;
       background: linear-gradient(135deg, rgba(221, 76, 79, 0.15) 0%, rgba(136, 74, 168, 0.18) 100%);
       border-radius: 50% 50% 40% 60% / 40% 60% 50% 50%;
       filter: blur(45px);
       z-index: 0;
+      pointer-events: none;
       animation: floatBlob3 16s ease-in-out infinite alternate;
     }
 
@@ -336,15 +365,16 @@
   </header>
 
   <!-- MAIN CONTAINER -->
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-36 pb-32 space-y-32 relative">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-32 sm:pt-36 pb-24 sm:pb-32 space-y-20 sm:space-y-32 relative overflow-hidden">
 
     <!-- HERO SECTION -->
-    <section id="hero" class="relative pt-6 pb-12 text-center flex flex-col items-center">
+    <section id="hero" class="relative pt-4 sm:pt-6 pb-8 sm:pb-12 text-center flex flex-col items-center">
       
-      <!-- Background Organic Theme Blob -->
-      <div class="blob-shape-1 -top-10 left-1/2 -translate-x-1/2 pointer-events-none opacity-80"></div>
-      <div class="blob-shape-2 top-40 -left-20 pointer-events-none opacity-60"></div>
-
+      <!-- Background Organic Theme Blob Container -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="blob-shape-1 -top-10 left-1/2 -translate-x-1/2 opacity-80"></div>
+        <div class="blob-shape-2 top-40 -left-20 opacity-60"></div>
+      </div>
       <!-- Content Column -->
       <div class="relative z-10 max-w-2xl mx-auto space-y-6">
         
@@ -418,11 +448,12 @@
     </section>
 
     <!-- SYSTEMS SHOWCASE SECTION -->
-    <section id="systems" class="relative space-y-12">
+    <section id="systems" class="relative space-y-8 sm:space-y-12">
       
-      <!-- Background Organic Blob -->
-      <div class="blob-shape-3 top-20 right-0 pointer-events-none opacity-70"></div>
-
+      <!-- Background Organic Blob Container -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="blob-shape-3 top-20 right-0 opacity-70"></div>
+      </div>
       <div class="relative z-10 text-left space-y-2">
         <h2 class="bear-section-heading">
           Tools I've Built
@@ -592,11 +623,12 @@
     </section>
 
     <!-- HOW I WORK WITH AI -->
-    <section id="how-i-work" class="relative space-y-12">
+    <section id="how-i-work" class="relative space-y-8 sm:space-y-12">
       
-      <!-- Background Organic Blob -->
-      <div class="blob-shape-1 top-40 -left-40 pointer-events-none opacity-50"></div>
-
+      <!-- Background Organic Blob Container -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="blob-shape-1 top-40 -left-40 opacity-50"></div>
+      </div>
       <div class="relative z-10 space-y-2">
         <h2 class="bear-section-heading">
           How I Work With AI
