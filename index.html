@@ -159,7 +159,7 @@
       box-shadow: 0 8px 20px -4px rgba(68, 68, 68, 0.25);
     }
     .bear-btn-primary:active {
-      transform: scale(0.97);
+      transform: scale(0.96);
     }
 
     /* Bear Button Secondary */
@@ -181,6 +181,9 @@
       border-color: #444444;
       background-color: #f3f5f7;
       transform: translateY(-2px);
+    }
+    .bear-btn-secondary:active {
+      transform: scale(0.96);
     }
 
     /* ==========================================================
@@ -207,6 +210,7 @@
         inset 0 2px 4px rgba(255, 255, 255, 0.9),
         inset 0 -2px 4px rgba(0, 0, 0, 0.02);
       border-radius: 40px;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
     }
 
     /* Organic Freeform Blobs (Bear Multi-Theme Decor) */
@@ -258,10 +262,13 @@
 
     /* iOS Purposeful Spring Animations */
     .spring-interactive {
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
     }
     .spring-interactive:hover {
       transform: translateY(-4px) scale(1.01);
+    }
+    .spring-interactive:active {
+      transform: scale(0.98);
     }
 
     /* Custom Code Styling (Roboto Mono / JetBrains) */
@@ -371,14 +378,14 @@
 
       <!-- Mac Window Mockup & Stat Window (Bear 40px Radius & Liquid Glass Lens) -->
       <div class="relative z-10 w-full mt-14">
-        <div class="liquid-glass-lens p-6 sm:p-8 border border-white/90">
+        <div id="hero-glass-lens" class="liquid-glass-lens p-6 sm:p-8 border border-white/90">
           
           <!-- Mac Window Traffic Lights -->
           <div class="flex items-center justify-between pb-6 border-b border-hairline/60">
             <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-[#ff5f56] border border-black/10"></span>
-              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] border border-black/10"></span>
-              <span class="w-3 h-3 rounded-full bg-[#27c93f] border border-black/10"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56] border border-black/10 cursor-pointer hover:opacity-80 transition-opacity"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] border border-black/10 cursor-pointer hover:opacity-80 transition-opacity"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f] border border-black/10 cursor-pointer hover:opacity-80 transition-opacity"></span>
               <span class="text-xs font-mono text-ink-muted ml-3">saurav_systems_core.md</span>
             </div>
             <div class="text-xs font-mono text-primary font-medium">
@@ -755,12 +762,12 @@
 
   </main>
 
-  <!-- Interactive JavaScript for Depletion Simulator -->
+  <!-- Interactive JavaScript: Depletion Simulator & Specular Liquid Glass Physics -->
   <script>
-    // Initialize Lucide Icons
+    // 1. Initialize Lucide Icons
     lucide.createIcons();
 
-    // Depletion Simulator Logic
+    // 2. Depletion Simulator Logic
     const slider = document.getElementById('depletion-slider');
     const depletionVal = document.getElementById('depletion-val');
     const localCutoff = document.getElementById('local-cutoff');
@@ -791,6 +798,36 @@
     if (slider) {
       slider.addEventListener('input', updateSimulation);
       updateSimulation();
+    }
+
+    // 3. Apple/SwiftUI Liquid Glass Specular Lens Physics (Mouse Parallax & Refraction)
+    const glassLens = document.getElementById('hero-glass-lens');
+    if (glassLens && window.matchMedia('(pointer: fine)').matches) {
+      glassLens.addEventListener('mousemove', (e) => {
+        const rect = glassLens.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const deltaX = (x - centerX) / centerX;
+        const deltaY = (y - centerY) / centerY;
+
+        glassLens.style.transform = `perspective(1000px) rotateX(${-deltaY * 2.5}deg) rotateY(${deltaX * 2.5}deg) translateY(-2px)`;
+        glassLens.style.boxShadow = `
+          ${-deltaX * 10}px ${20 - deltaY * 10}px 50px -15px rgba(142, 194, 194, 0.35),
+          inset ${deltaX * 3}px ${2 + deltaY * 3}px 6px rgba(255, 255, 255, 0.95),
+          inset 0 -2px 4px rgba(0, 0, 0, 0.02)
+        `;
+      });
+
+      glassLens.addEventListener('mouseleave', () => {
+        glassLens.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        glassLens.style.boxShadow = `
+          0 20px 50px -15px rgba(142, 194, 194, 0.25),
+          inset 0 2px 4px rgba(255, 255, 255, 0.9),
+          inset 0 -2px 4px rgba(0, 0, 0, 0.02)
+        `;
+      });
     }
   </script>
 </body>
