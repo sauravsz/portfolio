@@ -3,7 +3,7 @@
 Production landing page for Saurav — MBA Operations & Marketing, B.Sc. Mathematics (9.05 CGPA), and AI-Native Systems Builder.
 
 ## 🛠️ Featured Systems & Tools
-- **TrackMed** ([trackmed-app.vercel.app](https://trackmed-app.vercel.app)): Medicine inventory replenishment engine with asymmetric supplier lead-time forecasting and sub-second natural language voice/text intent parsing via Groq API.
+- **TrackMed**: Medicine inventory replenishment engine with asymmetric supplier lead-time forecasting and sub-second natural language voice/text intent parsing via Groq API.
 - **torsz** ([github.com/sauravsz/torsz](https://github.com/sauravsz/torsz)): Interactive Operations Research suite implementing transportation network optimization with automated dummy-node balancing, Hungarian assignment modeling, and Critical Path Method (CPM) project Gantt charts.
 - **SZRoute** ([szroute.vercel.app](https://szroute.vercel.app)): High-throughput edge AI gateway routing across 160+ AI providers with 15%–95% RTK token compression.
 - **JobOps** ([github.com/sauravsz/JobOps](https://github.com/sauravsz/JobOps)): Agentic career scoring engine with automated single-page pdfLaTeX / LibreOffice resume generation.
